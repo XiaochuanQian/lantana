@@ -11,14 +11,15 @@
 {% set i18n_build_languages = {} %}
 {% set i18n_alternates = {} %}
 {% endif %}
+<!DOCTYPE html>
 {% if page and page.meta.language %}
-<!DOCTYPE html lang="{{ page.meta.language }}">
+<html lang="{{ page.meta.language }}">
 {% elif i18n_page_locale %}
-<!DOCTYPE html lang="{{ i18n_page_locale }}">
+<html lang="{{ i18n_page_locale }}">
 {% elif config.language %}
-<!DOCTYPE html lang="{{ config.language }}">
+<html lang="{{ config.language }}">
 {% elif config.theme.locale %}
-<!DOCTYPE html lang="{{ config.theme.locale }}">
+<html lang="{{ config.theme.locale }}">
 {% endif %}
 
 <head>
@@ -69,7 +70,7 @@
   {% endif %}
 
   {% if config.favicon %}
-  <link rel="favicon" href="{{ config.favicon|url }}">
+  <link rel="icon" href="{{ config.favicon|url }}">
   {% endif %}
 
   {% with config = config, page = page, base_url = base_url, path = path, path2 = path2 %}
@@ -79,11 +80,15 @@
   {% endblock %}
 </head>
 
-<body {% include "before_header.html" %} {% if not config.disable_header %} {% block header %} <header>
+<body>
+{% include "before_header.html" %}
+{% if not config.disable_header %}
+{% block header %}
+<header>
   <nav
     class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3 {% if config.disable_header_when_printing %} print-hide {% endif %}">
     <div class="container">
-      <a class="navbar-brand text-body" asp-area="" href="{{ " /"|url }}">
+      <a class="navbar-brand text-body" href="{% if config.site_url %}{{ config.site_url }}{% else %}{{ base_url or '/' }}{% endif %}">
         {% if config.logo %}
         <img class="img-structure" src="{{ config.logo|url }}" alt="{{ config.site_name }}" width="28" height="28" />
         {% endif%}
@@ -162,13 +167,12 @@
     <script async src="{{ path2|url }}"></script>
     {% endfor %}
   </div>
-  </div>
 
   {% block before_footer %}
   {% endblock %}
   {% if not config.disable_footer %}
   {% block footer %}
-  <footer class="border-top footer text-muted .position-absolute.bottom-0.start-50.translate-middle-x"
+  <footer class="border-top footer text-muted"
     style="padding-top:15px;">
     <div class="container">
       <div class="row">
