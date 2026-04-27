@@ -2,8 +2,8 @@
     ページ一覧を表示するリスト
     forを再帰的に回している #}
 
-<div class="col-12 col-md-2 print-hide">
-    <div class="collapse d-md-block text-nowrap" id="nav" style="overflow-x:scroll;">
+<div class="col-12 col-md-2 print-hide nav-column">
+    <div class="collapse d-md-block text-nowrap nav-panel" id="nav">
         <ul class="list-group list-group-flush">
             {% for nav_item in nav recursive %}
             {% if not nav_item.children %}

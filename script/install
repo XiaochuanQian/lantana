@@ -2,7 +2,7 @@
 
 # Set up virtual environment
 python3 -m venv venv
-source venv/bin/activate
+. venv/bin/activate
 
 # Install i18n support for mkdocs
 pip install 'mkdocs[i18n]'

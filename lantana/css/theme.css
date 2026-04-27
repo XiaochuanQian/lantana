@@ -2,6 +2,74 @@ p code {
     padding: 5px;
 }
 
+body {
+    min-height: 100vh;
+}
+
+body > header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: var(--bs-body-bg);
+}
+
+@media (min-width: 768px) {
+    body {
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    body > header {
+        flex: 0 0 auto;
+    }
+
+    .page-shell {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-shell > .pb-3 {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .page-shell > .pb-3 > .row {
+        flex: 1 1 auto;
+        min-height: 0;
+        align-items: stretch;
+    }
+
+    .print-main {
+        min-height: 0;
+        max-height: 100%;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scroll-behavior: smooth;
+    }
+
+    .toc-column,
+    .nav-column {
+        min-height: 0;
+    }
+
+    .nav-panel,
+    .toc-panel {
+        position: sticky;
+        top: 1rem;
+        max-height: calc(100% - 1rem);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
+
 .highlighttable .copybtn,
 .highlighttable .filename,
 .highlight .copybtn,
